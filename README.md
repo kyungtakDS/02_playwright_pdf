@@ -35,3 +35,25 @@ python playwright_pdf_download.py "https://claudecode-lecture.vercel.app/Part0-.
 해당 경로(`C:\miniconda3\envs\flood_risk311\pythonw.exe`)를 자신의 Python 환경 경로로 바꿔주세요.
 
 내부적으로 `slides_to_pdf.py`의 변환 로직을 GUI와 CLI(`playwright_pdf_download.py`)가 함께 사용합니다.
+
+## 특정 강의 사이트 전용 스크립트
+
+슬라이드 구조가 달라 범용 스크립트로 캡처하기 어려운 강의 사이트는 별도 스크립트로 처리합니다.
+두 사이트 모두 비밀번호로 잠긴 수강생 전용 콘텐츠이므로, 비밀번호는 코드에 넣지 않고
+환경변수로 전달합니다.
+
+- `AiSyncClub_slides_to_pdf.py`: `aisyncclub-fastcampus-claude.vercel.app` 강의
+  - 환경변수: `AISYNCCLUB_PASSWORD`
+- `careerhacker_slides_to_pdf.py`: `careerhackeralex.com` AI 네이티브 강의
+  - 환경변수: `CAREERHACKER_PASSWORD`
+
+```bash
+# PowerShell
+$env:AISYNCCLUB_PASSWORD = "..."
+python AiSyncClub_slides_to_pdf.py
+
+$env:CAREERHACKER_PASSWORD = "..."
+python careerhacker_slides_to_pdf.py
+```
+
+결과 PDF는 `output/` 폴더에 저장되며, 큰 바이너리 파일이라 git에는 커밋하지 않습니다(`.gitignore` 참고).

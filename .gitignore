@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 temp_slides/
+output/
+output_2500/
+output_vibe/
+.env
